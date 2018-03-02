@@ -48,7 +48,7 @@ Cela signifie que le type de récepteur a la syntaxe littérale `*T` pour un cer
 
 Par exemple, la méthode `Scale` est ici défini sur `*Vertex`.
 
-Les méthodes avec récepteurs de pointeur peuvent modifier la valeur à laquelle le récepteur
+Les méthodes avec récepteurs de pointeur peuvent modifier la valeur sur laquelle le récepteur
 pointes (comme `Scale` le fait ici).
 Comme les méthodes ont souvent besoin de modifier leur récepteur, les récepteurs de pointeur sont plus
 communs que les récepteurs de valeur.
@@ -79,13 +79,13 @@ Quoi d'autre avez-vous eu besoin de changer pour que l'exemple compile?
 * Méthodes et pointeur d'indirection
 
 En comparant les deux programmes précédents, vous remarquerez peut-être que
-des fonctions avec un argument pointeur doivent prendre un pointeur :
+des fonctions avec un argument pointeur doivent recevoir un pointeur :
 
 	var v Vertex
 	ScaleFunc(v)  // Compile error!
 	ScaleFunc(&v) // OK
 
-tandis que les méthodes avec des récepteurs de pointeur prennent une valeur ou un pointeur comme
+tandis que les méthodes avec des récepteurs de pointeur reçoivent une valeur ou un pointeur comme
 récepteur quand ils sont appelés :
 
 	var v Vertex
@@ -104,13 +104,13 @@ Autrement dit, à titre de commodité, Go interprète la déclaration `v.Scale(5
 
 La chose équivalente se produit dans le sens inverse.
 
-Des fonctions qui prennent un argument de valeur doivent prendre une valeur de ce type spécifique :
+Des fonctions qui prennent un argument de valeur doivent recevoir une valeur de ce type spécifique :
 
 	var v Vertex
 	fmt.Println(AbsFunc(v))  // OK
 	fmt.Println(AbsFunc(&v)) // Compile error!
 
-tandis que les méthodes avec des récepteurs de valeur prennent une valeur ou un pointeur comme
+tandis que les méthodes avec des récepteurs de valeur acceptent une valeur ou un pointeur comme
 récepteur quand ils sont appelés :
 
 	var v Vertex
@@ -126,7 +126,7 @@ Dans ce cas, l'appel de méthode `p.Ab()` est interprété comme `(*p).Ab()`.
 
 Il y a deux raisons d'utiliser un récepteur de pointeur.
 
-La premiere est le cas ou la méthode peut modifier la valeur du recepteur pointé.
+La première est le cas ou la méthode peut modifier la valeur du recepteur pointé.
 
 La deuxième afin d'éviter la copie de la valeur sur chaque appel de méthode.
 Cela peut être plus efficace si le récepteur est une grande struct, par exemple.
@@ -142,7 +142,7 @@ récepteurs, mais pas un mélange des deux.
 
 * Interfaces
 
-Un _type_d'interface_ est définie comme un ensemble de signatures de méthode.
+Un _type_d'interface_ est défini comme un ensemble de signatures de méthode.
 
 Une valeur de type d'interface peut contenir n'importe quelle valeur qui implémente ces méthodes.
 
